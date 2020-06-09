@@ -4,7 +4,7 @@ const posts = require("../posts/postDb")
 
 const router = express.Router();
 
-router.post('/users', validateUser, (req, res) => {
+router.post('/', validateUser, (req, res) => {
   const user = req.body
   users
     .insert(user)
@@ -42,8 +42,7 @@ router.post('/:id/posts', validateUserId, validatePost, (req, res) => {
     })
 });
 
-router.get('/users', (req, res) => {
-  console.log('[DID WE MAKE IT HERE YET?]')
+router.get('/', (req, res) => {
   users
     .get()
     .then((data) => {
@@ -57,6 +56,7 @@ router.get('/users', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  const id = req.params.id
   users
     .getById(id)
     .then((user) => {
