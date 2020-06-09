@@ -18,11 +18,40 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // do your magic!
+  const id = req.params.id
+  posts
+    .getById(id)
+    .then((post) => {
+      if (post) {
+        res.status(200).json(post)
+      } else {
+        res.status(404).json({
+          message: "Post not found."
+        })
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Error retrieving the post."
+      })
+    })
 });
 
 router.delete('/:id', (req, res) => {
-  // do your magic!
+  const id = req.params.id
+  posts
+    .remove(id)
+    .then((post) => {
+      res.status(200).json({
+        message: "The post has been deleted."
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).json({
+        message: "Error deleting the post."
+      })
+    })
 });
 
 router.put('/:id', (req, res) => {
