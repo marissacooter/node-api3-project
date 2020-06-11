@@ -12,6 +12,10 @@ server.use(logger("long"))
 server.use('/api/users', userRouter)
 server.use('/api/posts', postRouter)
 
+server.get('/', (req, res) => {
+    res.status({ api: 'online' });
+});
+
 
 server.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`)
