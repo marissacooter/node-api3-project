@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require("express")
 const logger = require("./middleware/logger")
 const userRouter = require("./users/userRouter")
 const postRouter = require("./posts/postRouter")
 
 const server = express()
-const port = 5000
+const port = process.env.PORT || 5000;
 
 server.use(express.json())
 server.use(logger("long"))
