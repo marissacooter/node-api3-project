@@ -13,7 +13,7 @@ server.use('/api/users', userRouter)
 server.use('/api/posts', postRouter)
 
 server.get('/', (req, res) => {
-    res.status({ api: 'online' });
+    res.status(200).json({ api: 'online' });
 });
 
 
